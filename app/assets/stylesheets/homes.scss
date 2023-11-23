@@ -1,0 +1,126 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-bg {
+  background-image: url("phone2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  position: relative;
+  height: 89.6vh;
+}
+
+.top-bg:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(1,25,54,0.7);
+}
+
+.h-top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 25%;
+}
+
+.h-btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 15%;
+}
+
+.log-custom a {
+  font-size: 25px;
+}
+
+.link {
+  color: #e4e3db;
+}
+
+.head-text,.heading,.heading-font,.center-font {
+  font-family: 'Silkscreen', cursive;
+  color: #f4fffd;
+  font-size: 60px;
+}
+
+.heading-font {
+  color: #f9ba32;
+}
+
+p {
+  font-family: 'IBM Plex Sans JP', sans-serif;
+  color: #e4e3db;
+}
+
+p .fa-mobile-screen-button {
+  color: #ed254e;
+  font-size: 25px;
+}
+
+.card i {
+  font-size: 30px;
+}
+
+
+.about-bg {
+  background-image: url("apple.jpg");
+  background-size: cover;
+  background-position: bottom;
+  position: relative;
+  height: 89.6vh;
+}
+
+.about-bg:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.about-top {
+  position: absolute;
+  font-family: 'DotGothic16', sans-serif;
+  left: 0;
+  right: 0;
+  top: 15%;
+  margin-bottom: 20px;
+  color: #e4e3db;
+}
+
+.about-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30%;
+  color: #e4e3db;
+}
+
+.about-c {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+}
+
+@media only screen and (max-width: 768px){
+  .h-top {
+    top: 8%;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .log-custom a {
+    font-size: 25px;
+  }
+}

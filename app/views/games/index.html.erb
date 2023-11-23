@@ -1,0 +1,54 @@
+  <p id="notice"><%= flash[:notice] %></p>
+  <div class="container px-5 px-sm-0">
+    <h1 class="heading-custom" data-en="All Games">ゲーム一覧</h1>
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'users/userinfo', user: @user %>
+        <div class="text-center btn-custom">
+        <%= link_to new_game_path, class: 'btn btn-block text-light' do %>
+          <i class="fas fa-gamepad"></i>
+          <i class="fas fa-plus"></i>
+          <br>新しいゲームのレビューを追加
+        <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <h2>Games</h2>
+        <table class="table table-hover table-inverse text-center">
+          <thead>
+            <tr>
+              <th>タイトル</th>
+              <th>ジャンル</th>
+              <th>機種</th>
+              <th>レビュー件数</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @games.each do |game| %>
+            <tr>
+              <td class="align-middle"><%= link_to game.title, game_path(game) %></td>
+              <td class="align-middle"><%= game.genre %></td>
+              <td class="align-middle"><%= game.status %></td>
+              <td class="align-middle"><%= link_to game.reviews.count, game_path(game) %></td>
+              <td>
+                <% if current_user %>
+                  <% if current_user.favorites.exists?(game: @game) %>
+                    <%= link_to favorite_path(game), method: :delete, class: "btn btn-danger" do %>
+                    <i class="fa-solid fa-heart"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to favorite_game_path(game), method: :post, class: "btn btn-favorite-custom" do %>
+                    <i class="fa-regular fa-heart"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

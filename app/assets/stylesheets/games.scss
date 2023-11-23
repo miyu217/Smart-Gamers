@@ -1,0 +1,110 @@
+// Place all the styles related to the Games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.btn-favorite-custom {
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.fa-heart {
+  font-size: 20px; /* アイコンのサイズを調整 */
+  color: #ff0000;
+}
+
+
+.btn-favorite-custom:hover {
+  transform: scale(1.2);
+}
+
+.btn-favorite-custom.clicked .fa-heart {
+  background-color: #ff0000;
+  border: 2px solid #ff0000;
+}
+
+.new-game-form {
+  background-color: #f4fffd;
+}
+
+.form-review-group {
+  border: solid 1px #e4e3db;
+  padding: 5px;
+}
+
+.form-review-group label {
+  background-color: #e4e3db;
+  padding: 5px;
+  width: 100%;
+}
+
+.fa-face-sad-tear {
+  color: #3366ff;
+}
+
+.fa-face-frown-open {
+  color: #33cccc;
+}
+
+.fa-face-meh {
+  color: #33cc00;
+}
+
+.fa-face-smile {
+  color: #ff9900;
+}
+
+.fa-face-laugh-squint {
+  color: #ff6600;
+}
+
+.radiobutton {
+  display: none;
+}
+.radiobox label {
+  border: solid 1px #c0c0c0;
+  border-radius: 10px;
+}
+.radiobutton:checked + label {
+  background-color: #696969;
+}
+
+.radiobutton:checked + label i {
+  color: #fff;
+}
+
+.radiobutton:hover + label {
+  background-color: #333333;
+}
+
+.radiobutton:hover + label i {
+  color: #fff;
+}
+
+i {
+  font-size: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 10px;
+}
+
+.search-title {
+  font-size: 25px;
+  padding-bottom: 10px;
+}
+
+.request-heading {
+  margin-top: 50px;
+}
+
+.category {
+  display: inline-block;
+  padding: 5px 8px;
+  margin-right: 20px;
+  background-color: #acabab;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 15px;
+}

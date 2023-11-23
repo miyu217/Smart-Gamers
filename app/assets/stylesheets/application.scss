@@ -1,0 +1,235 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+* {
+  font-family: 'Chakra Petch', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f9dc5c;
+}
+
+body {
+  background-color: #f4fffd;
+}
+
+a {
+  color: #011936;
+}
+
+h1,h2,h3,p {
+  color: #011936;
+}
+
+.font-jp {
+  font-family: 'Kiwi Maru', serif;
+}
+
+.heading-custom {
+  font-family: 'Kiwi Maru', serif;
+	position: relative;
+	padding-top: 45px;
+	font-size: 25px;
+	border-bottom: 1px solid rgba(5,62,98,1);
+}
+
+.heading-custom::before {
+  font-family: 'Zen Dots', sans-serif;
+	content: attr(data-en);
+	position: absolute;
+	top: 0px;
+	left: 0;
+	color: rgba(5,62,98,0.2);
+	font-size: 50px;
+	text-transform: uppercase;
+	z-index: 1;
+}
+
+.h-min {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.mini-jp {
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.top-p {
+  color: #f4fffd;
+}
+
+.jumbotron {
+  margin: 0;
+}
+
+.navbar {
+  font-size: 20px;
+}
+
+.navbar-brand {
+  font-size: 27px;
+  font-weight: bold;
+  color: #011936;
+}
+
+.navbar-brand:hover {
+  color: #ed254e;
+}
+
+.navbar-toggler {
+  border-color: #011936;
+}
+
+.navbar-toggler-icon i {
+  font-size: 25px;
+  color: #011936;
+  padding: 3px;
+}
+
+.navbar-toggler-icon i:hover {
+  color: #ed254e;
+}
+
+.nav-link {
+  color: #011936;
+}
+
+.nav-link:hover {
+  color: #ed254e;
+}
+
+.about-review,.about-share,.about-discover {
+  background-color: #f9dc5c;
+}
+
+.search-result {
+  background: #f4fffd;
+}
+
+.user-info {
+  background: #f9dc5c;
+}
+
+.user i {
+  font-size: 20px;
+}
+
+.btn-custom {
+  margin-top: 30px;
+  margin-bottom: 50px;
+  background-color: #ed254e;
+  border-radius: 100vh;
+}
+
+.btn-custom:hover,
+.btn-custom:focus {
+  background-color: #465362;
+}
+
+.btn-form-custom {
+  color: #f4fffd;
+  background-color: #4897d8;
+}
+
+.btn-form-custom:hover,
+.btn-form-custom:focus {
+  color: #f4fffd;
+  background-color: #465362;
+}
+
+
+
+.search-form .form-inline {
+  display: block;
+  width: 60%;
+}
+
+.btn-search-custom {
+  background-color: #ed254e;
+  padding: 0 30px;
+}
+
+.btn-search-custom:hover,
+.btn-search-custom:focus {
+  background-color: #ed254e;
+}
+
+.search-form i {
+  font-size: 20px;
+}
+
+.btn-request-custom {
+  border: solid 1px #ed254e;
+  color: #ed254e;
+}
+
+.btn-request-custom:hover,
+.btn-request-custom:focus {
+  background-color: #113743;
+  color: #113743;
+}
+
+.btn-show-custom {
+  background-color: #f9dc5c;
+}
+
+.btn-show-custom:hover,
+.btn-show-custom:focus {
+  background-color: #ed254e;
+}
+
+@media only screen and (max-width: 768px){
+  .navbar-nav {
+    margin-top: 20px;
+  }
+
+  .nav-item {
+    padding-left: 20px;
+  }
+
+  .nav-item:hover {
+    background-color: #ed254e;
+  }
+
+  .nav-link:hover {
+    color: #011936;
+  }
+
+  .geme-review {
+    padding: 30px 0;
+  }
+
+  .search-form .form-inline {
+    display: block;
+    width: 100%;
+  }
+
+  .btn-search-custom {
+    padding: 0 15px;
+  }
+}

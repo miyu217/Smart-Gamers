@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="search-form mt-3">
+    <%= form_tag(search_path, method: "get", class: "form-inline") do %>
+    <div class="input-group">
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "ゲーム、ジャンルを検索" %>
+      <div class="input-group-append">
+        <button class="btn btn-search-custom text-light" type="submit"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <h2 class="mt-3">検索結果</h2>
+  <% if @games.any? %>
+    <div class="card search-result">
+      <% @games.each do |game| %>
+      <ul>
+        <li class="search-title">
+          <%= link_to game.title, game %>
+        </li>
+        <li class="category">
+          <%= game.genre %>
+        </li>
+      </ul>
+      <% end %>
+      <% else %>
+        <p class="text-dark">該当するゲームは見つかりませんでした。</p>
+        <h5 class="request-heading">リクエスト送信のお願い</h5>
+        <p class="text-dark">サイト内のゲーム追加にご協力お願いします。</p>
+          <%= link_to new_user_request_path(@user), class: 'btn btn-request-custom' do %>
+            ⇒スマホゲームの追加リクエスト画面へ
+          <% end %>
+          <P class="text-dark mt-2">※リクエスト送信後、一週間以内にゲーム一覧に追加されます。
+          <br>※Home → リクエスト状況 からご確認ください。
+          </P>
+      <% end %>
+    </div>

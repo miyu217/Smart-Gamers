@@ -1,0 +1,57 @@
+<p id="notice"><%= flash[:notice] %></p>
+  <div class="container px-5 px-sm-0">
+    <h1 class="heading-custom" data-en="User Info">ユーザー情報</h1>
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'users/userinfo', user: @user %>
+        <% if user_signed_in? %>
+          <% if current_user.admin? %>
+          <div class="text-center btn-custom">
+            <%= link_to admin_requests_path, class: 'btn btn-block text-light' do %>
+            管理者画面へ
+            <% end %>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <section class="search">
+          <div class="search-form-custom mt-3">
+            <%= form_tag(search_path, method: "get", class: "form-inline") do %>
+            <div class="input-group">
+              <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "ゲームを検索" %>
+              <div class="input-group-append">
+                <button class="btn btn-search-custom text-light" type="submit"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </section>
+        <section class="favorite list-back">
+        <h3 class="h-min"><%= @user.name %>'s Game</h3>
+          <% @games.each do |game| %>
+          <ul class="list-custom">
+            <li class="align-middle font-jp"><%= link_to game.title, game_path(game) %></li>
+          </ul>
+          <% end %>
+        </section>
+      </div>
+      <div class="col-md-3 sidebar">
+
+        <section class="new-review list-back mt-3">
+          <h3 class="new-review-heading h-min">New Review</h3>
+          <div class="review-card">
+            <% if @latest_review %>
+              <h5 class="review-card-title"><%= link_to @latest_review.game.title, game_path(@game) %></h5>
+              <p class="font-jp"><%= display_rating_icon(@latest_review.rating) %>
+              <br>
+              <strong><%= @latest_review.comment %></strong></p>
+            <% else %>
+              <p class="font-jp">このユーザーのレビューはありません。</p>
+            <% end %>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
