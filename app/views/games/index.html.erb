@@ -4,34 +4,32 @@
     <div class="row">
       <div class="col-md-3">
         <%= render 'users/userinfo', user: @user %>
-        <div class="text-center btn-custom">
-        <%= link_to new_game_path, class: 'btn btn-block text-light' do %>
-          <i class="fas fa-gamepad"></i>
-          <i class="fas fa-plus"></i>
-          <br>新しいゲームのレビューを追加
-        <% end %>
-        </div>
       </div>
 
       <div class="col-md-9">
-        <h2>Games</h2>
+        <section class="search">
+          <div class="search-form-custom mt-3">
+            <%= form_tag(search_path, method: "get", class: "form-inline") do %>
+            <div class="input-group">
+              <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "ゲームを検索" %>
+              <div class="input-group-append">
+                <button class="btn btn-search-custom text-light" type="submit"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </section>
+        <section class="all-games list-back mt-3">
+        <h3 class="h-min">Games</h3>
+        <table class="table text-center">
+          <tbody>
         <table class="table table-hover table-inverse text-center">
-          <thead>
-            <tr>
-              <th>タイトル</th>
-              <th>ジャンル</th>
-              <th>機種</th>
-              <th>レビュー件数</th>
-              <th></th>
-            </tr>
-          </thead>
           <tbody>
             <% @games.each do |game| %>
             <tr>
               <td class="align-middle"><%= link_to game.title, game_path(game) %></td>
               <td class="align-middle"><%= game.genre %></td>
-              <td class="align-middle"><%= game.status %></td>
-              <td class="align-middle"><%= link_to game.reviews.count, game_path(game) %></td>
+              <td class="align-middle"><%= link_to game.reviews.count, game_path(game) %> 件のレビュー</td>
               <td>
                 <% if current_user %>
                   <% if current_user.favorites.exists?(game: @game) %>
@@ -49,6 +47,7 @@
             <% end %>
           </tbody>
         </table>
+        </section>
       </div>
     </div>
   </div>

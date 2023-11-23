@@ -1,7 +1,7 @@
 <%= form_with(model:[@user,@request]) do |f| %>
   <div class="form-group">
     <label for="request_title"><i class="fa-solid fa-check"></i> 追加したいゲームのタイトル</label>
-    <p>※スマホゲーム以外のゲームはリクエストを拒否させていただきますので、ご了承ください。</p>
+    <p class="font-jp">※スマホゲーム以外のゲームはリクエストを拒否させていただきますので、ご了承ください。</p>
       <%= f.text_field :title, class: 'form-control' %>
   </div>
   <div class="form-group">
@@ -17,6 +17,6 @@
       <%= f.text_field :discription, class: 'form-control' %>
   </div>
   <div class="form-btn mb-3">
-    <button type="submit" class="btn btn-request-custom">リクエストを送信</button>
+    <button type="submit" class="btn btn-block btn-request-custom">リクエストを送信</button>
   </div>
 <% end %>

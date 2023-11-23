@@ -184,14 +184,14 @@ h1,h2,h3,p {
 }
 
 .btn-request-custom {
-  border: solid 1px #ed254e;
+  border: solid 2px #ed254e;
   color: #ed254e;
 }
 
 .btn-request-custom:hover,
 .btn-request-custom:focus {
-  background-color: #113743;
-  color: #113743;
+  background-color: #ed254e;
+  color: #f4f4f4;
 }
 
 .btn-show-custom {
