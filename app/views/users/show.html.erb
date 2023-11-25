@@ -30,7 +30,7 @@
         </section>
         <section class="favorite list-back">
         <h3 class="h-min"><%= @user.name %>'s Game</h3>
-          <% @games.each do |game| %>
+          <% @user.favorite_games.each do |game| %>
           <ul class="list-custom">
             <li class="align-middle font-jp"><%= link_to game.title, game_path(game) %></li>
           </ul>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_04_035310) do
+ActiveRecord::Schema.define(version: 2023_11_25_082324) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -35,8 +35,6 @@ ActiveRecord::Schema.define(version: 2023_10_04_035310) do
     t.string "title"
     t.text "description"
     t.string "status"
-    t.datetime "create_at"
-    t.datetime "update_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "approval", default: "承認待ち"

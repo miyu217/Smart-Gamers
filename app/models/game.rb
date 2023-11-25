@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :user
   has_many :favorites
+  has_many :favorited_by, through: :favorites, source: :user
   has_many :reviews, dependent: :destroy
 
   def self.looks(search, word)

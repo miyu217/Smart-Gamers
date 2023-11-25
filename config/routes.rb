@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'favorites/create'
-  get 'favorites/destroy'
   devise_for :users
 
   root to: 'homes#top'
@@ -10,12 +8,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :requests
   end
+
   resources :games do
-    member do
-      post 'favorite', to: 'favorites#create'
-      delete 'favorite', to: 'favorites#destroy'
-    end
     resources :reviews
+    resources :favorites, only: [:create, :destroy]
   end
 
   namespace :admin do

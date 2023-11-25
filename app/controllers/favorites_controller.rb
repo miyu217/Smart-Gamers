@@ -3,13 +3,14 @@ class FavoritesController < ApplicationController
 
   def create
     @game = Game.find(params[:game_id])
-    favorite = current_user.favorites.create(game: @game)
-    redirect_to games_path, notice: "ゲームをお気に入りに追加しました"
+    current_user.favorites.create(game: @game) unless current_user.favorited?(@game)
+    redirect_to games_path, notice: 'お気に入り登録が完了しました!'
   end
 
   def destroy
-    favorite = current_user.favorites.find_by(game_id: params[:id])
-    favorite.destroy if favorite
-    redirect_to games_path, notice: "ゲームをお気に入りから削除しました"
+    @game = Game.find(params[:game_id])
+    @favorite = current_user.favorites.find_by(game: @game)
+    @favorite.destroy if @favorite
+    redirect_to game_path(@game), notice: 'ゲームをお気に入りから削除しました'
   end
 end

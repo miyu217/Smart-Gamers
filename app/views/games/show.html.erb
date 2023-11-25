@@ -54,6 +54,19 @@
               <td><%= link_to @game.title, game_path(@game) %></td>
               <td class="align-middle"><%= @game.genre %></td>
               <td class="align-middle"><%= @game.status %></td>
+              <td>
+                <% if current_user %>
+                  <% if current_user.favorites.exists?(game: @game) %>
+                    <%= link_to game_favorite_path(@game), method: :delete, class: "btn btn-danger" do %>
+                    <i class="fa-solid fa-heart"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to game_favorites_path(@game), method: :post, class: "btn btn-favorite-custom" do %>
+                    <i class="fa-regular fa-heart"></i>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </td>
             </tr>
             <% if @reviews.any? %>
             <% @reviews.each do |review| %>
