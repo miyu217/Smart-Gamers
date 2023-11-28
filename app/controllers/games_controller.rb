@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def new
     @game = Game.new
   end
@@ -63,7 +65,7 @@ class GamesController < ApplicationController
 
   private
   def game_params
-    params.require(:game).permit(:title, :status, :genre)
+    params.require(:game).permit(:title, :status, :genre, :release_date, :developer, :price)
   end
 end
 

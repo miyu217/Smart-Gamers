@@ -31,7 +31,7 @@
               <td>
                 <% if current_user %>
                   <% if current_user.favorited?(game) %>
-                    <%= link_to game_favorite_path(game, current_user.favorites.find_by(game: game)), method: :delete, class: "btn btn-danger" do %>
+                    <%= link_to game_favorite_path(game, current_user.favorites.find_by(game: game)), method: :delete, class: "btn btn-favorite-d-custom" do %>
                     <i class="fa-solid fa-heart"></i>
                     <% end %>
                   <% else %>

@@ -9,18 +9,16 @@
 }
 
 .fa-heart {
-  font-size: 20px; /* アイコンのサイズを調整 */
+  font-size: 20px;
   color: #ff0000;
 }
-
 
 .btn-favorite-custom:hover {
   transform: scale(1.2);
 }
 
-.btn-favorite-custom.clicked .fa-heart {
-  background-color: #ff0000;
-  border: 2px solid #ff0000;
+.btn-favorite-d-custom:hover {
+  transform: scale(1.2);
 }
 
 .new-game-form {
