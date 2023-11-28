@@ -21,14 +21,14 @@
   background-color: rgba(1,25,54,0.7);
 }
 
-.h-top {
+.top-heading {
   position: absolute;
   left: 0;
   right: 0;
   top: 25%;
 }
 
-.h-btn {
+.top-btn {
   position: absolute;
   left: 0;
   right: 0;
@@ -41,6 +41,10 @@
 
 .link {
   color: #e4e3db;
+}
+
+.top-p {
+  color: #f4fffd;
 }
 
 .head-text,.heading,.heading-font,.center-font {
@@ -112,7 +116,7 @@ p .fa-mobile-screen-button {
 }
 
 @media only screen and (max-width: 768px){
-  .h-top {
+  .top-heading {
     top: 8%;
   }
 
