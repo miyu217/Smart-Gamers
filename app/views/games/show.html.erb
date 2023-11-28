@@ -1,3 +1,4 @@
+<main>
   <p id="notice"><%= flash[:notice] %></p>
   <div class="container px-5 px-sm-0">
     <h1 class="heading-custom" data-en="Review">レビュー</h1>
@@ -20,14 +21,13 @@
               <label for="review_rating_1"><i class="fa-solid fa-face-sad-tear"> Poor</i></label>
             </div>
           <div class="form-group">
-              <%= f.text_area :comment, class: 'form-control',placeholder: "感想、コメントを記入" %>
+            <%= f.text_area :comment, class: 'form-control',placeholder: "感想、コメントを記入" %>
           </div>
           <div class="form-group">
-              <button type="submit" class="btn btn-block btn-success">レビューを送信</button>
+            <button type="submit" class="btn btn-block btn-success">レビューを送信</button>
           </div>
           <% end %>
         </div>
-      </div>
       </div>
 
       <div class="col-md-6">
@@ -43,10 +43,10 @@
             <% end %>
           </div>
         </section>
-        <section class="game-review list-back mt-3">
+        <section class="game-review section-back mt-3">
         <h3 class="h-min"><%= link_to @game.title, game_path(@game) %></h3>
 
-          <%= @game.genre %>
+          ジャンル：<%= @game.genre %>
               <%= @game.status %>
               <%= @game.price %>
               <%= @game.developer %>
@@ -64,24 +64,23 @@
                   <% end %>
                 <% end %>
 
-      </section>
+        </section>
+      </div>
     </div>
     <div class="col-md-3">
-    <h3>Game's Review</h3>
-    <% if @reviews.any? %>
-            <% @reviews.each do |review| %>
-            <tr>
-              <td colspan="3">
+      <section class="search section-back mt-3">
+      <h3 class="font-al">Game's Review</h3>
+        <% if @reviews.any? %>
+          <% @reviews.each do |review| %>
                   <%= display_rating_icon(review.rating) %>
                   <br><%= review.comment %>
                   <br>
                   <%= review.user.name %>
                   _ <%= review.created_at.strftime('%Y/%m/%d') %>
-              </td>
-            </tr>
             <% end %>
             <% else %>
-            <tr>
-              <td colspan="3">レビューはまだありません。</td>
-            </tr>
+            レビューはまだありません。
             <% end %>
+          </section>
+        </div>
+</main>
