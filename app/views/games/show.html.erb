@@ -97,7 +97,7 @@
           <div class="review-cards">
             <% @reviews.each do |review| %>
               <div class="card m-3 p-3">
-                <h4><%= display_rating_icon(review.rating) %></h4>
+                <h4><%= link_to display_rating_icon(review.rating), game_review_path(@game) %></h4>
                 <p class="mt-1 font-jp"><%= review.comment %></p>
                 <p><%= review.user.name %>_ <%= review.created_at.strftime('%Y/%m/%d') %></p>
               </div>

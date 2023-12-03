@@ -17,7 +17,7 @@
           </div>
         </section>
         <section class="game-date section-back mt-3">
-          <div class="game-info-update ml-auto">
+          <div class="game-info-update text-end">
             <%= link_to edit_game_path(@game), class: 'btn btn-outline-dark rounded-pill btn-sm' do %>
               編集 <i class="fa-regular fa-pen-to-square"></i>
             <% end %>
@@ -65,24 +65,28 @@
 
       <div class="col-md-6">
         <section class="review-show section-back mt-3">
-          <div class="game-info-update ml-auto">
-            <%= link_to edit_game_review_path(@game, @review), class: 'btn btn-outline-dark rounded-pill btn-sm' do %>
-              編集 <i class="fa-regular fa-pen-to-square"></i>
+          <h3 class="font-al">
+            <%= link_to game_path(@game), class:'btn btn-outline-dark rounded-pill btn-sm' do %>
+            <i class="fa-solid fa-arrow-left"></i>
             <% end %>
-          </div>
-          <div class="game-info-update ml-auto">
-            <%= link_to game_review_path(@game, @review), class: 'btn btn-outline-danger rounded-pill btn-sm', method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-              削除 <i class="fa-solid fa-trash"></i>
-            <% end %>
-          </div>
-          <h3 class="font-al">Review</h3>
-            <h5><%= display_rating_icon(@review.rating) %></h5>
-            <p><%= @review.comment %></p>
-
-
-
-<%= link_to "一覧に戻る", game_path(@game) %>
-
+            Review
+          </h3>
+          <div class="card m-3">
+            <div class="card-body">
+              <h4 class="card-title"><%= display_rating_icon(@review.rating) %></h4>
+              <p class="card-text font-jp"><%= @review.comment %></p>
+              <p class="pt-2"><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "user.png", size: '40x40' %>
+                <%= link_to @review.user.name, user_path(@user) %>_ <%= @review.created_at.strftime('%Y/%m/%d') %></p>
+              <div class="review-update ml-auto">
+                <%= link_to edit_game_review_path(@game, @review) do %>
+                  編集 <i class="fa-regular fa-pen-to-square"></i>
+                <% end %>
+                |
+                <%= link_to game_review_path(@game, @review), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                  削除 <i class="fa-solid fa-trash"></i>
+                <% end %>
+              </div>
+            </div>
         </section>
       </div>
     </div>
