@@ -1,96 +1,92 @@
-<div class="admin container px-5 px-sm-0 pt-3">
-  <h1 class="heading-custom" data-en="Dash Board">管理者用ダッシュボード</h1>
-  <div class="row">
-    <div class="col-md-4 new-game-form">
-      <h3 class="list-back mt-3 mb-3">New Game</h3>
-      <%= form_with model: @game, local:true do |f| %>
-      <div class="form-group">
-        <label for="game_title">ゲームタイトル</label>
-        <%= f.text_field :title, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <label for="game_status">対応機種</label>
-        <div class="form-check">
-    <%= f.check_box :status, { class: 'form-check-input' }, 'ios', nil %>
-    <%= label_tag 'game_status_ios', 'iOS', class: 'form-check-label' %>
-  </div>
-  <div class="form-check">
-    <%= f.check_box :status, { class: 'form-check-input' }, 'android', nil %>
-    <%= label_tag 'game_status_android', 'Android', class: 'form-check-label' %>
-  </div>
+<main>
+  <div class="admin container px-5 px-sm-0 pt-3">
+    <h1 class="heading-custom" data-en="Dash Board">管理者用ダッシュボード</h1>
+    <div class="row">
+      <div class="col-md-4 new-game-form">
+        <section class="section-back mt-3">
+        <h3 class="font-al">New Game</h3>
+        <%= form_with model: @game, local: true do |f| %>
+          <div class="form-group">
+            <label for="game_title">ゲームタイトル</label>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label for="game_status">対応機種</label>
+            <div class="form-check">
+              <%= f.check_box :status, { class: 'form-check-input' }, 'ios', nil %>
+              <%= label_tag 'game_status_ios', 'iOS', class: 'form-check-label' %>
+            </div>
+            <div class="form-check">
+              <%= f.check_box :status, { class: 'form-check-input' }, 'android', nil %>
+              <%= label_tag 'game_status_android', 'Android', class: 'form-check-label' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="game_genre">ジャンル</label>
+            <br>
+            <%= f.select :genre, [["シミュレーション","シミュレーション"],["パズル","パズル"],["RPG","RPG"],["アクション","アクション"],["アドベンチャー","アドベンチャー"],["パズル","パズル"],["育成","育成"],["ボード","ボード"],["スポーツ","スポーツ"],["レーシング","レーシング"],["音楽","音楽"],["その他","その他"]],include_blank:"選択してください", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label for="game_release">リリース日</label>
+            <%= f.date_field :release_date %>
+          </div>
+          <div class="form-group">
+            <label for="game_developer">開発者</label>
+            <%= f.text_field :developer %>
+          </div>
+          <div class="form-group">
+            <label for="game_price">価格</label>
+            <%= f.number_field :price %>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-form-custom">ゲームを追加</button>
+          </div>
+        <% end %>
+        </section>
       </div>
 
-      <div class="form-group">
-        <label for="game_genre">ジャンル</label>
-        <br>
-        <%= f.select :genre, [["シミュレーション","シミュレーション"],["パズル","パズル"],["RPG","RPG"],["アクション","アクション"],["アドベンチャー","アドベンチャー"],["パズル","パズル"],["育成","育成"],["ボード","ボード"],["スポーツ","スポーツ"],["レーシング","レーシング"],["音楽","音楽"],["その他","その他"]],include_blank:"選択してください", class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <label for="game_release">リリース日</label>
-        <%= f.date_field :release_date %>
-      </div>
-      <div class="form-group">
-        <label for="game_developer">開発者</label>
-        <%= f.text_field :developer %>
-      </div>
-      <div class="form-group">
-        <label for="game_price">価格</label>
-        <%= f.number_field :price %>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-block btn-form-custom">ゲームを追加</button>
-      </div>
-      <% end %>
-    </div>
-
-    <div class="col-md-8">
-      <h3 class="list-back pt-3">All Requests</h3>
-      <table class="table table-hover table-inverse text-center">
-        <thead>
-          <tr>
-            <th>タイトル</th>
-            <th>詳細</th>
-            <th>機種</th>
-            <th>作成日時</th>
-            <th>状況</th>
-            <th>承認/拒否</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @requests.each do |request| %>
-          <tr>
-            <td><%= request.title %></td>
-            <td><%= request.description %></td>
-            <td><%= request.status %></td>
-            <td><%= request.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-            <td>
-              <% if request.approval == '承認済み' %>
-                承認済み
-              <% elsif request.approval == '拒否済み' %>
-                拒否済み
-              <% else %>
-                未承認
-              <% end %>
-            </td>
-            <td>
-              <% if request.approval == '承認済み' %>
-                <%= link_to 'ゲームを追加', new_game_path, class: 'btn btn-success' %>
-              <% end %>
+      <div class="col-md-8">
+        <section class="section-back mt-3">
+        <h3 class="font-al">All Requests</h3>
+        <table class="table table-hover table-inverse text-center">
+          <tbody>
+            <% @requests.each do |request| %>
+            <tr>
+              <td><%= request.title %></td>
+              <td><%= request.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td>
+                <% if request.approval == '承認済み' %>
+                  承認済み
+                <% elsif request.approval == '拒否済み' %>
+                  拒否済み
+                <% else %>
+                  未承認
+                <% end %>
+              </td>
               <% if request.approval == '承認待ち' %>
+              <td>
                 <%= link_to '承認', admin_request_path(request), method: :put , data: { confirm: 'Are you sure?' } %>
                 <%= link_to '拒否', admin_request_path(request), method: :put, data: { confirm: 'Are you sure?' } %>
+              </td>
               <% elsif request.approval == '拒否済み' %>
+              <td>
                 <%= link_to '削除', admin_request_path(request), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
               <% end %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+            </tr>
+            <tr>
+              <%= request.description %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </section>
+      </div>
+
   </div>
   <div class="admin-overlay"></div>
 </div>
+</main>
 
 
 

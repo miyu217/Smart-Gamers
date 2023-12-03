@@ -1,0 +1,22 @@
+
+  <%= form_with(model:[@game, @review], local: true) do |f| %>
+      <p class="font-jp"><%= link_to @game.title, game_path(@game) %>のレビューを送信してください</p>
+      <div class="form-radiobox">
+        <%= f.radio_button :rating, "5", class: 'radiobutton' %>
+        <label for="review_rating_5"><i class="fa-solid fa-face-laugh-squint"> Excellent</i></label>
+        <%= f.radio_button :rating, "4", class: 'radiobutton' %>
+        <label for="review_rating_4"><i class="fa-solid fa-face-smile"> Good</i></label>
+        <%= f.radio_button :rating, "3", class: 'radiobutton' %>
+        <label for="review_rating_3"><i class="fa-solid fa-face-meh"> Average</i></label>
+        <%= f.radio_button :rating, "2", class: 'radiobutton' %>
+        <label for="review_rating_2"><i class="fa-solid fa-face-frown-open"> Below Average</i></label>
+        <%= f.radio_button :rating, "1", class: 'radiobutton' %>
+        <label for="review_rating_1"><i class="fa-solid fa-face-sad-tear"> Poor</i></label>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :comment, class: 'form-control',placeholder: "感想、コメントを記入" %>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-block btn-success">レビューを送信</button>
+      </div>
+  <% end %>

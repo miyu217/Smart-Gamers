@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
+  before_action :set_request, only: [:show, :edit, :update, :destroy]
 
   def index
     @user_requests = @user.requests
@@ -21,7 +22,7 @@ class RequestsController < ApplicationController
       flash[:notice]="リクエストが送信されました。"
       redirect_to user_requests_path
     else
-      flash[:alert] = "リクエストの送信に失敗しました。"
+      flash[:notice] = "リクエストの送信に失敗しました。"
       render "index"
     end
   end
@@ -33,7 +34,7 @@ class RequestsController < ApplicationController
   def update
     @request = Request.find(params[:id])
     if @request.update(request_params)
-      flash[:success] = 'リクエストが更新されました。'
+      flash[:notice] = 'リクエストが更新されました。'
       redirect_to user_request_path(@request)
     else
       render 'edit'
@@ -43,9 +44,9 @@ class RequestsController < ApplicationController
   def destroy
     @request = Request.find(params[:id])
     if @request.destroy
-      flash[:success] = 'リクエストが削除されました。'
+      flash[:notice] = 'リクエストが削除されました。'
     else
-      flash[:alert] = 'リクエストの削除に失敗しました。'
+      flash[:notice] = 'リクエストの削除に失敗しました。'
     end
     redirect_to user_requests_path
   end
@@ -55,6 +56,10 @@ class RequestsController < ApplicationController
 
   def set_user
     @user = User.find(current_user.id)
+  end
+
+  def set_request
+    @request = Request.find(params[:id])
   end
 
   def request_params

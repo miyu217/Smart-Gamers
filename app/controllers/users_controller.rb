@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
     @user = User.find(params[:id])
     @game = Game.find(params[:id])
@@ -23,12 +24,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.admin = true
-    @user.save
     if @user.update(user_params)
-     redirect_to user_path(@user), notice: "You have updated user-info successfully."
+     redirect_to user_path(@user), notice: "ユーザー情報を編集しました！"
     else
-     render "users/edit"
+     render "edit"
     end
   end
 

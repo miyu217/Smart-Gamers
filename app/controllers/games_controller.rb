@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_admin, except: [:index, :show, :search]
+  before_action :set_game, only: [:edit, :update, :destroy]
 
   def new
     @game = Game.new
@@ -9,7 +10,7 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     @game.user_id = current_user.id
     if @game.save
-      flash[:notice]="You have created game successfully."
+      flash[:notice]="ゲームを追加しました！"
       redirect_to game_path(@game)
     else
       @games = Game.all
@@ -32,7 +33,7 @@ class GamesController < ApplicationController
   end
 
   def edit
-     @game = Game.find(params[:id])
+    @game = Game.find(params[:id])
     if @game.user == current_user
       render "edit"
     else
@@ -44,7 +45,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.user_id = current_user.id
     if @game.update(game_params)
-      flash[:notice]="You have updated game successfully."
+      flash[:notice]="ゲーム情報を編集しました！！"
       redirect_to game_path(@game.id)
     else
       render :edit
@@ -64,8 +65,17 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def set_game
+    @game = Game.find(params[:id])
+  end
+
   def game_params
     params.require(:game).permit(:title, :status, :genre, :release_date, :developer, :price)
+  end
+
+  def authenticate_admin
+    redirect_to root_path, alert: 'アクセス権限がありません。' unless current_user&.admin?
   end
 end
 

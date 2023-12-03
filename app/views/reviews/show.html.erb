@@ -62,50 +62,27 @@
           </table>
         </section>
       </div>
+
       <div class="col-md-6">
-        <section class="new-review-form section-back mt-3">
-          <%= form_with(model:[@game, @review], local: true) do |f| %>
-            <h3 class="font-al">New Review</h3>
-            <p class="font-jp"><%= link_to @game.title, game_path(@game) %>のレビューを送信してください</p>
-            <div class="form-radiobox">
-              <%= f.radio_button :rating, "5", class: 'radiobutton' %>
-              <label for="review_rating_5"><i class="fa-solid fa-face-laugh-squint"> Excellent</i></label>
-              <%= f.radio_button :rating, "4", class: 'radiobutton' %>
-              <label for="review_rating_4"><i class="fa-solid fa-face-smile"> Good</i></label>
-              <%= f.radio_button :rating, "3", class: 'radiobutton' %>
-              <label for="review_rating_3"><i class="fa-solid fa-face-meh"> Average</i></label>
-              <%= f.radio_button :rating, "2", class: 'radiobutton' %>
-              <label for="review_rating_2"><i class="fa-solid fa-face-frown-open"> Below Average</i></label>
-              <%= f.radio_button :rating, "1", class: 'radiobutton' %>
-              <label for="review_rating_1"><i class="fa-solid fa-face-sad-tear"> Poor</i></label>
-            </div>
-            <div class="form-group">
-              <%= f.text_area :comment, class: 'form-control',placeholder: "感想、コメントを記入" %>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-block btn-success">レビューを送信</button>
-            </div>
-          <% end %>
-        </section>
-      </div>
-    </div>
-    <div class="row d-flex">
-      <div class="col-12">
-        <section class="review-index section-back mt-3">
-          <h3 class="font-al">Game's Review</h3>
-          <% if @reviews.any? %>
-          <div class="review-cards">
-            <% @reviews.each do |review| %>
-              <div class="card m-3 p-3">
-                <h4><%= display_rating_icon(review.rating) %></h4>
-                <p class="mt-1 font-jp"><%= review.comment %></p>
-                <p><%= review.user.name %>_ <%= review.created_at.strftime('%Y/%m/%d') %></p>
-              </div>
+        <section class="review-show section-back mt-3">
+          <div class="game-info-update ml-auto">
+            <%= link_to edit_game_review_path(@game, @review), class: 'btn btn-outline-dark rounded-pill btn-sm' do %>
+              編集 <i class="fa-regular fa-pen-to-square"></i>
             <% end %>
           </div>
-          <% else %>
-              <p class="font-jp">レビューはまだありません。</p>
-          <% end %>
+          <div class="game-info-update ml-auto">
+            <%= link_to game_review_path(@game, @review), class: 'btn btn-outline-danger rounded-pill btn-sm', method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+              削除 <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+          <h3 class="font-al">Review</h3>
+            <h5><%= display_rating_icon(@review.rating) %></h5>
+            <p><%= @review.comment %></p>
+
+
+
+<%= link_to "一覧に戻る", game_path(@game) %>
+
         </section>
       </div>
     </div>
