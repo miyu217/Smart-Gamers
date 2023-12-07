@@ -17,11 +17,6 @@
           </div>
         </section>
         <section class="game-date section-back mt-3">
-          <div class="game-info-update ml-auto">
-            <%= link_to edit_game_path(@game), class: 'btn btn-outline-dark rounded-pill btn-sm' do %>
-              編集 <i class="fa-regular fa-pen-to-square"></i>
-            <% end %>
-          </div>
           <h3 class="ml-2 font-jp"><%= link_to @game.title, game_path(@game) %></h3>
           <div>
             <% if current_user %>
@@ -60,6 +55,15 @@
               </tr>
             </tbody>
           </table>
+        <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <div class="game-info-update">
+              <%= link_to edit_game_path(@game), class: 'btn btn-outline-dark rounded-pill btn-block' do %>
+                ゲーム情報を編集する <i class="fa-regular fa-pen-to-square"></i>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
         </section>
       </div>
       <div class="col-md-6">
@@ -97,8 +101,8 @@
           <div class="review-cards">
             <% @reviews.each do |review| %>
               <div class="card m-3 p-3">
-                <h4><%= link_to display_rating_icon(review.rating), game_review_path(@game) %></h4>
-                <p class="mt-1 font-jp"><%= review.comment %></p>
+                <h4><%= link_to display_rating_icon(review.rating), game_review_path(review.game, review) %></h4>
+                <p class="review-text mt-1 font-jp"><%= review.comment %></p>
                 <p><%= review.user.name %>_ <%= review.created_at.strftime('%Y/%m/%d') %></p>
               </div>
             <% end %>

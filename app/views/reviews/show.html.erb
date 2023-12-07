@@ -17,11 +17,6 @@
           </div>
         </section>
         <section class="game-date section-back mt-3">
-          <div class="game-info-update text-end">
-            <%= link_to edit_game_path(@game), class: 'btn btn-outline-dark rounded-pill btn-sm' do %>
-              編集 <i class="fa-regular fa-pen-to-square"></i>
-            <% end %>
-          </div>
           <h3 class="ml-2 font-jp"><%= link_to @game.title, game_path(@game) %></h3>
           <div>
             <% if current_user %>

@@ -14,13 +14,11 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
     @review = Review.find(params[:id])
     @user = User.find(current_user.id)
   end
 
   def edit
-    @game = Game.find(params[:id])
     @review = Review.find(params[:id])
     if @review.user == current_user
       render "edit"
@@ -49,7 +47,11 @@ class ReviewsController < ApplicationController
   end
 
   def set_review
-    @review = @game.reviews.find(params[:id])
+    @review = @game.reviews.find_by(id: params[:id])
+    unless @review
+      flash[:alert] = "レビューが見つかりませんでした。"
+      redirect_to game_path(@game)
+    end
   end
 
   def review_params

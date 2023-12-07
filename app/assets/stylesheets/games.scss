@@ -124,6 +124,13 @@ ul {
   flex-shrink: 0;
 }
 
+.review-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
 @media only screen and (max-width: 768px) {
   .review-cards .card {
     width: 70%;

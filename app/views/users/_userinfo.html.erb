@@ -18,9 +18,9 @@
     </div>
     <div class="row user-intro">
       <%if @user.introduction.nil? %>
-        <%=@user.introduction%>
+        <p class="font-jp"><%=@user.introduction%></p>
       <% else %>
-        <%=safe_join(@user.introduction.split("\n"),tag(:br))%>
+        <p class="font-jp"><%=safe_join(@user.introduction.split("\n"),tag(:br))%></p>
       <%end %>
     </div>
 </div>
