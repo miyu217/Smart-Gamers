@@ -53,6 +53,10 @@
                 <th>リリース日</th>
                 <td><%= @game.release_date %></td>
               </tr>
+              <tr>
+                <th>課金情報</th>
+                <td><%= @game.payment_details %></td>
+              </tr>
             </tbody>
           </table>
         <% if user_signed_in? %>

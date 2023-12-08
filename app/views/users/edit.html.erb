@@ -20,9 +20,9 @@
               <label for="user_name">ユーザー名</label>
               <%= f.text_field :name, autofocus: true, class: 'form-control'%>
             </div>
-            <div class="form-group">
-              <label for="user_Image">プロフィール画像</label>
-              <%= f.attachment_field :profile_image, class: 'form-control-file' %>
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile" data-browse="選択">ファイルを選択...</label>
             </div>
             <div class="form-group">
               <label for="user_Introduction">自己紹介</label>

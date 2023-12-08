@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_game
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_review, only: [:show, :edit, :update, :destroy, :toggle_good]
 
   def create
     @review = @game.reviews.build(review_params)
@@ -14,8 +14,20 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find(params[:id])
     @user = User.find(current_user.id)
+    @good_count = @review.helpful_count
+  end
+
+  def toggle_good
+    existing_vote = @review.voted_for?(current_user)
+
+    if existing_vote
+      flash[:notice] = 'You have already voted for this review.'
+    else
+      ReviewVote.create(user: current_user, review: @review)
+      @review.increment!(:helpful_count)
+    end
+    redirect_to game_review_path(@game, @review)
   end
 
   def edit

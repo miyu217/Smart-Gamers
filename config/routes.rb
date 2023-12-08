@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   end
 
   resources :games do
-    resources :reviews
+    resources :reviews do
+      member do
+        post 'toggle_good'
+      end
+    end
     resources :favorites, only: [:create, :destroy]
   end
 
