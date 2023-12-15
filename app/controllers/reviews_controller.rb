@@ -31,7 +31,6 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
     if @review.user == current_user
       render "edit"
     else
@@ -67,6 +66,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :comment)
+    params.require(:review).permit(:seriousness_rating, :package_name, :spent_amount, :rating, :comment)
   end
 end

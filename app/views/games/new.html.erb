@@ -38,6 +38,11 @@
         <%= f.number_field :price %>
       </div>
       <div class="form-group">
+        <label for="game_price">課金情報</label>
+        <%= f.text_area :payment_details, class: 'form-control',placeholder: "感想、コメントを記入" %>
+      </div>
+
+      <div class="form-group">
         <button type="submit" class="btn btn-block btn-form-custom">ゲームを追加</button>
       </div>
       <% end %>

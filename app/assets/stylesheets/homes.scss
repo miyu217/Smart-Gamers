@@ -3,39 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .top-bg {
-  background-image: url("phone2.jpg");
+  background-image: linear-gradient(rgba(13,0,21,0.8),rgba(13,0,21,0.8)),url("phone2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
-  position: relative;
   height: 89.6vh;
 }
 
-.top-bg:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: rgba(1,25,54,0.7);
-}
-
-.top-heading {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 25%;
-}
-
-.top-btn {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 15%;
-}
-
 .log-custom a {
+  font-family: 'Chakra Petch', sans-serif;
   font-size: 25px;
 }
 
@@ -44,8 +20,16 @@
 }
 
 .top-p {
-  font-family: 'Kiwi Maru', serif;
   color: #f4fffd;
+}
+
+.top-p .fa-mobile-screen-button {
+  font-size: 30px;
+  color: #ed254e;
+}
+
+.top-heading-text {
+  padding-bottom: 50px;
 }
 
 .head-text,.heading,.heading-font,.center-font {
@@ -58,57 +42,21 @@
   color: #f9ba32;
 }
 
-p {
-  font-family: 'IBM Plex Sans JP', sans-serif;
-  color: #e4e3db;
-}
-
-p .fa-mobile-screen-button {
-  color: #ed254e;
-  font-size: 25px;
-}
-
 .about-bg {
-  background-image: url("apple.jpg");
+  background-image: linear-gradient(rgba(13,0,21,0.8),rgba(13,0,21,0.8)),url("iphone-smart.jpg");
   background-size: cover;
   background-position: bottom;
-  position: relative;
-  height: 89.6vh;
+  height: 40vh;
 }
 
-.about-bg:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.7);
-}
-
-.about-top {
-  position: absolute;
+.about-heading {
   font-family: 'DotGothic16', sans-serif;
-  left: 0;
-  right: 0;
-  top: 15%;
-  margin-bottom: 20px;
-  color: #e4e3db;
+  color: #f4fffd;
+  padding-top: 50px;
 }
 
-.about-text {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 30%;
-  color: #e4e3db;
-}
-
-.about-c {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
+.about-p {
+  color: #f4fffd;
 }
 
 @media only screen and (max-width: 768px){
@@ -122,5 +70,18 @@ p .fa-mobile-screen-button {
 
   .log-custom a {
     font-size: 25px;
+  }
+
+  .about-bg {
+    background-image: linear-gradient(rgba(13,0,21,0.8),rgba(13,0,21,0.8)),url("iphone-smart.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+
+  .about-heading {
+    font-size: 38px;
+    padding-top: 100px;
+    padding-bottom: 80px;
   }
 }

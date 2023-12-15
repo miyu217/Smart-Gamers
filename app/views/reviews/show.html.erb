@@ -68,7 +68,8 @@
           </h3>
           <div class="card m-3">
             <div class="card-body">
-              <h4 class="card-title"><%= display_rating_icon(@review.rating) %></h4>
+              <h4class="card-title"><%= @review.package_name %></h4>
+              <p class="card-text"><%= display_rating_icon(@review.rating) %></p>
               <p class="card-text font-jp"><%= @review.comment %></p>
               <% if @review.voted_for?(current_user) %>
                 <%= link_to toggle_good_game_review_path(@game, @review), method: :post do %>
@@ -80,7 +81,18 @@
                 <% end %>
               <% end %>
               <p class="pt-2"><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "user.png", size: '40x40' %>
-                <%= link_to @review.user.name, user_path(@user) %>_ <%= @review.created_at.strftime('%Y/%m/%d') %></p>
+                <%= link_to @review.user.name, user_path(@user) %>_
+                <% case @review.seriousness_rating %>
+                  <% when 'max' %>
+                    ガチ勢
+                  <% when 'normal' %>
+                    こつこつ勢
+                  <% when 'low' %>
+                    のんびり勢
+                  <% else %>
+                    評価なし
+                <% end %>
+                 _<%= @review.created_at.strftime('%Y/%m/%d') %></p>
               <div class="review-update ml-auto">
                 <%= link_to edit_game_review_path(@game, @review) do %>
                   編集 <i class="fa-regular fa-pen-to-square"></i>
