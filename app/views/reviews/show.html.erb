@@ -68,8 +68,11 @@
           </h3>
           <div class="card m-3">
             <div class="card-body">
-              <h4class="card-title"><%= @review.package_name %></h4>
-              <p class="card-text"><%= display_rating_icon(@review.rating) %></p>
+              <div class="card-title font-jp d-flex">
+                <h4><%= @review.package_name %></h4>
+                <p class="ml-auto">課金額：<%= @review.spent_amount %>円</p>
+              </div>
+              <h5 class="card-text"><%= display_rating_icon(@review.rating) %></h5>
               <p class="card-text font-jp"><%= @review.comment %></p>
               <% if @review.voted_for?(current_user) %>
                 <%= link_to toggle_good_game_review_path(@game, @review), method: :post do %>
@@ -80,8 +83,8 @@
                   <i class="fa-regular fa-thumbs-up"></i> <%= @review.helpful_count %>
                 <% end %>
               <% end %>
-              <p class="pt-2"><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "user.png", size: '40x40' %>
-                <%= link_to @review.user.name, user_path(@user) %>_
+              <p class="font-jp pt-2"><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "user.png", size: '40x40' %>
+                <%= link_to @review.user.name, user_path(@user) %> _
                 <% case @review.seriousness_rating %>
                   <% when 'max' %>
                     ガチ勢
@@ -93,7 +96,7 @@
                     評価なし
                 <% end %>
                  _<%= @review.created_at.strftime('%Y/%m/%d') %></p>
-              <div class="review-update ml-auto">
+              <div class="review-update mx-auto">
                 <%= link_to edit_game_review_path(@game, @review) do %>
                   編集 <i class="fa-regular fa-pen-to-square"></i>
                 <% end %>

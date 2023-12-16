@@ -1,11 +1,11 @@
 <%= form_with(model:[@user,@request]) do |f| %>
   <div class="form-group">
     <label for="request_title"><i class="fa-solid fa-check"></i> 追加したいゲームのタイトル</label>
-    <p class="font-jp">※スマホゲーム以外のゲームはリクエストを拒否させていただきますので、ご了承ください。</p>
-      <%= f.text_field :title, class: 'form-control' %>
+    <%= f.text_field :title, class: 'form-control' %>
+    <p class="font-jp">※スマホゲーム以外・アプリ内課金なしのゲームはリクエストを拒否させていただきますのでご了承ください。</p>
   </div>
   <div class="form-group">
-    <label for="request_title"><i class="fa-solid fa-check"></i> ダウンロード機種</label>
+    <label for="request_title"><i class="fa-solid fa-check"></i> ダウンロードした機種</label>
     <br>
     <%= f.radio_button :status, "ios" %> ios
     <br>

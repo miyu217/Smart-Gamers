@@ -65,8 +65,8 @@
               </td>
               <% if request.approval == '承認待ち' %>
               <td>
-                <%= link_to '承認', admin_request_path(request), method: :put , data: { confirm: 'Are you sure?' } %>
-                <%= link_to '拒否', admin_request_path(request), method: :put, data: { confirm: 'Are you sure?' } %>
+                <%= link_to '承認', admin_request_path(request), method: :put , data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-sm" %>
+                <%= link_to '拒否', admin_request_path(request), method: :put, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
               </td>
               <% elsif request.approval == '拒否済み' %>
               <td>

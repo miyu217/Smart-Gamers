@@ -1,6 +1,6 @@
 <main>
-  <p id="notice"><%= flash[:notice] %></p>
   <div class="container px-5 px-sm-0">
+    <p id="notice"><%= flash[:notice] %></p>
     <h1 class="heading-custom" data-en="Review">レビュー</h1>
     <section class="game-date section-back mt-3">
       <h3 class="ml-2 font-jp"><%= link_to @game.title, game_path(@game) %></h3>
@@ -73,7 +73,10 @@
       <div class="review-cards">
         <% @reviews.each do |review| %>
           <div class="card m-3 p-3">
-            <h4 class="card-title pb-2 font-jp"><%= review.package_name %></h4>
+            <div class="card-title font-jp d-flex">
+              <h4><%= review.package_name %></h4>
+              <p class="ml-auto"><%= review.spent_amount %>円</p>
+            </div>
             <h5><%= link_to display_rating_icon(review.rating), game_review_path(review.game, review) %></h5>
             <p class="review-text mt-1 font-jp"><%= review.comment %></p>
             <p class="font-jp"><%= review.user.name %>_

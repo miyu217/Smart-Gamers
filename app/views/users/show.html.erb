@@ -43,15 +43,19 @@
       <div class="col-md-3 sidebar">
         <section class="latest-review section-back mt-3">
           <h3 class="latest-review-heading font-al">Latest Review</h3>
-          <p class="font-jp">最新のレビュー</p>
+          <p class="font-jp">最新の課金レビュー</p>
           <div class="review-card">
             <% if @latest_review %>
-              <h5 class="review-card-title"><%= link_to @latest_review.game.title, game_path(@game) %></h5>
-              <p class="font-jp"><%= display_rating_icon(@latest_review.rating) %>
+              <h5 class="review-card-title pb-1"><%= link_to @latest_review.game.title, game_path(@game) %></h5>
+              <p class="font-jp">
+              課金対象：<%= @latest_review.package_name %>
+              </p>
+              <p>
+              <%= display_rating_icon(@latest_review.rating) %>
               <br>
-              <strong><%= @latest_review.comment %></strong></p>
+              <%= @latest_review.comment %></p>
             <% else %>
-              <p class="font-jp">このユーザーのレビューはありません。</p>
+              <p class="font-jp">このユーザーの課金レビューはありません。</p>
             <% end %>
           </div>
         </section>
