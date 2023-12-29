@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :authenticate_admin, except: [:index, :show, :search]
-  before_action :set_game, only: [:edit, :update, :destroy]
+  before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def new
     @game = Game.new
@@ -10,7 +10,7 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
     @game.user_id = current_user.id
     if @game.save
-      flash[:notice]="ゲームを追加しました！"
+      flash[:notice]= "ゲームを追加しました！"
       redirect_to game_path(@game)
     else
       @games = Game.all
@@ -26,14 +26,12 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
     @user = @game.user
-    @review =Review.new
+    @review = Review.new
     @reviews = @game.reviews
   end
 
   def edit
-    @game = Game.find(params[:id])
     if @game.user == current_user
       render "edit"
     else
@@ -42,10 +40,9 @@ class GamesController < ApplicationController
   end
 
   def update
-    @game = Game.find(params[:id])
     @game.user_id = current_user.id
     if @game.update(game_params)
-      flash[:notice]="ゲーム情報を編集しました！！"
+      flash[:notice]= "ゲーム情報を編集しました！！"
       redirect_to game_path(@game.id)
     else
       render :edit
@@ -53,7 +50,6 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @game = Game.find(params[:id])
     @game.destroy
     redirect_to games_path
   end
@@ -71,7 +67,7 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:title, :status, :genre, :release_date, :developer, :price)
+    params.require(:game).permit(:title, :status, :genre, :release_date, :developer, :price, :payment_details)
   end
 
   def authenticate_admin

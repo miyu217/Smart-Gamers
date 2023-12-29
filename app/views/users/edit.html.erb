@@ -1,9 +1,14 @@
 <main>
-  <p id="notice"><%= flash[:notice] %></p>
+  <% if flash[:notice] %>
+    <div class="alert alert-success font-jp">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="container">
     <div class="row">
       <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-        <h2 class="font-jp">プロフィール編集</h2>
+        <section class="user-edit section-back mt-3">
+          <h2 class="font-jp">プロフィール編集</h2>
           <% if @user.errors.any? %>
             <h3>
             <%= @user.errors.count %>errors prohibited this obj from being saved:
@@ -14,15 +19,14 @@
             <% end %>
             </ul>
           <% end %>
-
           <%= form_with model: @user, local:true do |f| %>
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile" data-browse="選択">画像を選択...</label>
+            </div>
             <div class="form-group">
               <label for="user_name">ユーザー名</label>
               <%= f.text_field :name, autofocus: true, class: 'form-control'%>
-            </div>
-            <div class="custom-file mb-3">
-              <input type="file" class="custom-file-input" id="customFile">
-              <label class="custom-file-label" for="customFile" data-browse="選択">ファイルを選択...</label>
             </div>
             <div class="form-group">
               <label for="user_Introduction">自己紹介</label>
@@ -32,6 +36,7 @@
               <button type="submit" class="btn btn-block btn-dark">変更内容を保存</button>
             </div>
           <% end %>
+        </section>
       </div>
     </div>
   </div>

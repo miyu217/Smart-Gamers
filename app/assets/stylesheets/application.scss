@@ -37,6 +37,12 @@ body {
   background-color: #f4fffd;
 }
 
+.alert {
+  font-size: 18px;
+  padding-left: 10px;
+  font-family: 'Kiwi Maru', serif;
+}
+
 a {
   color: #011936;
 }
@@ -188,44 +194,12 @@ h1,h2,h3,p {
   transform: scale(1.1);
 }
 
-
-
-
-.mini-jp {
-  font-size: 20px;
-  padding-left: 10px;
-}
-
 .jumbotron {
   margin: 0;
 }
 
-.about-review,.about-share,.about-discover {
-  background-color: #f9dc5c;
-}
-
 .search-result {
   background: #f4fffd;
-}
-
-.btn-request-custom {
-  border: solid 1px #ed254e;
-  color: #ed254e;
-}
-
-.btn-request-custom:hover,
-.btn-request-custom:focus {
-  background-color: #ed254e;
-  color: #f4f4f4;
-}
-
-.btn-show-custom {
-  background-color: #f9dc5c;
-}
-
-.btn-show-custom:hover,
-.btn-show-custom:focus {
-  background-color: #ed254e;
 }
 
 @media only screen and (max-width: 768px){
@@ -243,6 +217,14 @@ h1,h2,h3,p {
 
   .nav-link:hover {
     color: #011936;
+  }
+
+  .tab-label:hover {
+    background-color: #fff;
+  }
+
+  .tab-link:hover {
+    background-color: #7159A6;
   }
 
   .geme-review {

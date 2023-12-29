@@ -11,6 +11,6 @@ class FavoritesController < ApplicationController
     @game = Game.find(params[:game_id])
     @favorite = current_user.favorites.find_by(game: @game)
     @favorite.destroy if @favorite
-    redirect_to game_path(@game), notice: 'ゲームをお気に入りから削除しました'
+    redirect_to game_path(@game), alert: 'ゲームをお気に入りから削除しました'
   end
 end

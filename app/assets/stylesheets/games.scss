@@ -83,6 +83,7 @@
 
 .radiobutton:checked + label {
   background-color: #696969;
+  color: #fff;
 }
 
 .radiobutton:checked + label i {
@@ -91,6 +92,7 @@
 
 .radiobutton:hover + label {
   background-color: #333333;
+  color: #fff;
 }
 
 .radiobutton:hover + label i {

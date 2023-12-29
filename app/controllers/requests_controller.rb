@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user_requests = @user.requests
+    @requests = @user.requests
   end
 
   def show
@@ -22,8 +22,8 @@ class RequestsController < ApplicationController
       flash[:notice]="リクエストが送信されました。"
       redirect_to user_requests_path
     else
-      flash[:notice] = "リクエストの送信に失敗しました。"
-      render "index"
+      flash[:alert] = "リクエストの送信に失敗しました。"
+      render "new"
     end
   end
 

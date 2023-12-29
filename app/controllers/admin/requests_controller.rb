@@ -4,6 +4,9 @@ class Admin::RequestsController < ApplicationController
 
   def index
     @requests = Request.all
+    @pending_approval_requests = Request.pending_approval
+    @approved_requests = Request.approved
+    @rejected_requests = Request.rejected
     @game = Game.new
   end
 
@@ -13,33 +16,14 @@ class Admin::RequestsController < ApplicationController
       flash[:notice]="ゲームが追加されました！"
       redirect_to game_path(@game)
     else
+      @requests = Request.all
       render "index"
     end
   end
 
-  def edit
-    @game = Game.find(params[:id])
-    if @game.user == current_user
-      render :edit
-    else
-      redirect_to games_path
-    end
-  end
-
-  def update
-    @game = Game.find(params[:id])
-    if @game.update(game_params)
-      flash[:notice]="ゲーム情報を編集しました！"
-      redirect_to game_path(@game.id)
-    else
-      render :edit
-    end
-  end
-
-
   def approve
     if @request.approve!
-      redirect_to new_game_path, notice: 'リクエストが承認されました。'
+      redirect_to admin_requests_path, notice: 'リクエストが承認されました。'
     else
       redirect_to admin_requests_path, alert: 'リクエストの承認に失敗しました。'
     end
@@ -56,7 +40,7 @@ class Admin::RequestsController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:title, :status, :genre, :release_date, :developer, :price)
+    params.require(:game).permit(:title, :status, :genre, :release_date, :developer, :price, :payment_details)
   end
 
   def set_request

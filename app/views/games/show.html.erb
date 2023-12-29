@@ -1,6 +1,15 @@
 <main>
-  <div class="container px-5 px-sm-0">
-    <p id="notice"><%= flash[:notice] %></p>
+  <div class="container px-5 px-sm-0 mt-3">
+    <% if flash[:notice] %>
+      <div class="alert alert-success font-jp">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger font-jp">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
     <h1 class="heading-custom" data-en="Review">レビュー</h1>
     <section class="game-date section-back mt-3">
       <h3 class="ml-2 font-jp"><%= link_to @game.title, game_path(@game) %></h3>
@@ -9,17 +18,17 @@
         <div>
           <% if current_user %>
             <% if current_user.favorites.exists?(game: @game) %>
-              <%= link_to game_favorite_path(@game), method: :delete, class: "btn btn-favorite-d-custom-show" do %>
+              <%= link_to game_favorite_path(@game, @game), method: :delete, class: "btn btn-favorite-d-custom-show font-jp" do %>
                 お気に入り登録済み <i class="fa-solid fa-heart"></i>
               <% end %>
             <% else %>
-              <%= link_to game_favorites_path(@game), method: :post, class: "btn btn-favorite-custom-show" do %>
+              <%= link_to game_favorites_path(@game), method: :post, class: "btn btn-favorite-custom-show font-jp" do %>
                 お気に入り登録済み <i class="fa-regular fa-heart"></i>
               <% end %>
             <% end %>
           <% end %>
         </div>
-        <table class="table game-date-table">
+        <table class="table game-date-table font-jp">
           <tbody>
             <tr>
               <th>ジャンル</th>
@@ -45,7 +54,7 @@
         </table>
         <% if user_signed_in? %>
           <% if current_user.admin? %>
-            <div class="game-info-update">
+            <div class="game-info-update font-jp">
               <%= link_to edit_game_path(@game), class: 'btn btn-outline-dark rounded-pill btn-block' do %>
                 ゲーム情報を編集する <i class="fa-regular fa-pen-to-square"></i>
               <% end %>
@@ -53,9 +62,15 @@
           <% end %>
         <% end %>
       </div>
-      <div class="col-md-6 p-3 mt-3">
-        <h4 class="font-jp">課金情報</h4>
-        <div><%= @game.payment_details %></div>
+      <div class="col-md-6 mt-3">
+      <table class="table game-date-table font-jp">
+        <tbody>
+          <tr>
+            <th>課金情報</th>
+            <td><%= @game.payment_details %></td>
+          </tr>
+        </tbody>
+      </table>
       </div>
     </div>
     </section>
@@ -77,7 +92,7 @@
               <h4><%= review.package_name %></h4>
               <p class="ml-auto"><%= review.spent_amount %>円</p>
             </div>
-            <h5><%= link_to display_rating_icon(review.rating), game_review_path(review.game, review) %></h5>
+            <h5><%= link_to display_rating_icon(review.rating), game_review_path(@game, review) %></h5>
             <p class="review-text mt-1 font-jp"><%= review.comment %></p>
             <p class="font-jp"><%= review.user.name %>_
             <% case review.seriousness_rating %>
@@ -90,7 +105,7 @@
               <% else %>
                 評価なし
             <% end %>
-            _ <%= review.created_at.strftime('%Y/%m/%d') %></p>
+            _ <%= review.created_at&.strftime('%Y/%m/%d') %></p>
           </div>
         <% end %>
       </div>

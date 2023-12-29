@@ -1,5 +1,9 @@
 <main>
-  <p id="notice"><%= flash[:notice] %></p>
+  <% if flash[:notice] %>
+    <div class="alert alert-success font-jp">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
   <div class="container px-5 px-sm-0">
     <h1 class="heading-custom" data-en="All Users">ユーザー一覧</h1>
     <div class="row">
@@ -9,13 +13,13 @@
       <div class="col-md-9">
         <section class="all-users section-back mt-3">
         <h3 class="font-al">Users</h3>
-        <table class="table text-center">
+        <table class="table text-center font-jp">
           <tbody>
             <% @users.each do |user| %>
             <tr>
               <td><%= attachment_image_tag user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "user.png", size: '50x50' %></td>
-              <td class="align-middle"><%= link_to user.name, user_path(user.id) %></td>
-              <td class="align-middle"><%= link_to @user.games.count, user_path(user) %> 件のレビュー</td>
+              <td class="align-middle"><%= link_to user.name, user_path(user) %></td>
+              <td class="align-middle"><%= link_to user.reviews.count, user_path(user) %> 件の課金レビュー</td>
               <td class="align-middle"><%= link_to '詳細', user_path(user.id), class: 'btn btn-outline-secondary' %></td>
             </tr>
             <% end %>

@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :requests, dependent: :destroy
 
+  validates :name, presence: true, length: { minimum: 2,maximum: 20}, uniqueness: true
+  validates :introduction, length: { maximum: 50}
+
   def favorited?(game)
     favorite_games.exists?(id: game.id)
   end

@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @game = Game.find(params[:id])
-    @games = @user.games
     @latest_review = @user.reviews.last
   end
 

@@ -1,6 +1,10 @@
 <main>
-  <p id="notice"><%= flash[:notice] %></p>
-  <div class="container px-5 px-sm-0">
+  <div class="container px-5 px-sm-0 mt-3">
+    <% if flash[:notice] %>
+      <div class="alert alert-success font-jp">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <h1 class="heading-custom" data-en="Review">レビュー</h1>
     <div class="row">
       <div class="col-md-6">
@@ -84,7 +88,7 @@
                 <% end %>
               <% end %>
               <p class="font-jp pt-2"><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "user.png", size: '40x40' %>
-                <%= link_to @review.user.name, user_path(@user) %> _
+                <%= link_to @review.user.name, user_path(@review.user) %> _
                 <% case @review.seriousness_rating %>
                   <% when 'max' %>
                     ガチ勢
@@ -96,15 +100,17 @@
                     評価なし
                 <% end %>
                  _<%= @review.created_at.strftime('%Y/%m/%d') %></p>
-              <div class="review-update mx-auto">
-                <%= link_to edit_game_review_path(@game, @review) do %>
-                  編集 <i class="fa-regular fa-pen-to-square"></i>
+                <% if current_user && current_user == @review.user %>
+                  <div class="review-update mx-auto">
+                    <%= link_to edit_game_review_path(@game, @review) do %>
+                      編集 <i class="fa-regular fa-pen-to-square"></i>
+                    <% end %>
+                    |
+                    <%= link_to game_review_path(@game, @review), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
+                      削除 <i class="fa-solid fa-trash"></i>
+                    <% end %>
+                  </div>
                 <% end %>
-                |
-                <%= link_to game_review_path(@game, @review), method: :delete, data: { confirm: "本当に削除しますか？" } do %>
-                  削除 <i class="fa-solid fa-trash"></i>
-                <% end %>
-              </div>
             </div>
         </section>
       </div>

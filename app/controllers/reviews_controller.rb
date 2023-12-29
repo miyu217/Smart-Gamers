@@ -8,7 +8,9 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to game_review_path(@game, @review), notice: "レビューが投稿されました。"
     else
+      @game = Game.find(params[:game_id])
       @reviews = @game.reviews
+      review = @game.reviews.find_by(id: params[:id])
       render "games/show"
     end
   end
@@ -48,7 +50,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to game_path(@game), notice: "レビューが削除されました。"
+    redirect_to game_path(@game), alert: "レビューが削除されました。"
   end
 
   private

@@ -1,5 +1,15 @@
 <div class="col-md-6">
-  <%= form_with(model:[@game, @review], local: true) do |f| %>
+    <%= form_with(model:[@game, @review], local: true) do |f| %>
+      <% if @review.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger font-jp">
+          <h5>以下の項目を修正してください。</h5>
+          <ul>
+            <% @review.errors.full_messages.each do |message| %>
+              <li>・<%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     <h5 class="font-jp">▼ このゲームに対する本気度</h5>
     <div class="form-radiobox radio-custom pb-3 d-flex text-center">
       <%= f.radio_button :seriousness_rating, :max, class: 'radiobutton' %>
